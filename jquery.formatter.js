@@ -486,7 +486,7 @@ var formatter = function (patternMatcher, inptSel, utils) {
        self._keyDown(evt);
       //Hack for Mobile devices because the keypress event is not being fired properly.
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-			this.focus = this.el.value.length;
+			self.focus = self.el.value.length;
 			// The first thing we need is the character code
 			var k, isSpecial;
 			// Mozilla will trigger on special keys and assign the the value 0
