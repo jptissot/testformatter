@@ -491,7 +491,8 @@ var formatter = function (patternMatcher, inptSel, utils) {
         isSpecial = utils.isSpecialKeyPress(evt.which, evt.keyCode);
         if (!utils.isDelKeyPress(evt.which, evt.keyCode) && !isSpecial && !utils.isModifier(evt)) {
           self._processKey(String.fromCharCode(k), false);
-          return utils.preventDefault(evt);
+
+          return false;
         }
       }
     });
