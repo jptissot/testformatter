@@ -483,17 +483,21 @@ var formatter = function (patternMatcher, inptSel, utils) {
     self.focus = el.value.length;
     // Add Listeners
     utils.addListener(self.el, 'keydown', function (evt) {
-      self._keyDown(evt);
+       self._keyDown(evt);
       //Hack for Mobile devices because the keypress event is not being fired properly.
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        var k, isSpecial;
-        k = evt.which || evt.keyCode;
-        isSpecial = utils.isSpecialKeyPress(evt.which, evt.keyCode);
-        if (!utils.isDelKeyPress(evt.which, evt.keyCode) && !isSpecial && !utils.isModifier(evt)) {
-          self._processKey(String.fromCharCode(k), false);
-
-          return false;
-        }
+			this.focus = this.el.value.length;
+			// The first thing we need is the character code
+			var k, isSpecial;
+			// Mozilla will trigger on special keys and assign the the value 0
+			// We want to use that 0 rather than the keyCode it assigns.
+			k = evt.which || evt.keyCode;
+			isSpecial = utils.isSpecialKeyPress(evt.which, evt.keyCode);
+			// Process the keyCode and prevent default
+			if (!utils.isDelKeyPress(evt.which, evt.keyCode) && !isSpecial && !utils.isModifier(evt)) {
+			  this._processKey(String.fromCharCode(k), false);
+			  return utils.preventDefault(evt);
+			}
       }
     });
     //Hack for Mobile devices, on
