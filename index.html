@@ -12,12 +12,15 @@
 
 	<p>
 		<input id="iPcode" type="text" placeholder="Postal Code">
+		<br />
+		<input id="iTel" type="text" placeholder="Telephone">
 	</p>
 <script src="https://code.jquery.com/jquery-2.1.4.js"> </script>
   <script src="jquery.formatter.js"></script>
   
   <script>
 	$("#iPcode").formatter({ pattern: '{{a}}{{9}}{{a}} {{9}}{{a}}{{9}}' });
+	$("#iTel").formatter({ pattern: '{{999}}-{{999}}-{{9999}}' });
   </script>
 </body>
 </html>
